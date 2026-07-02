@@ -4,31 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nandan Sriranga</title>
+
   <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6b7a;
+      --accent: #1f5eff;
+      --line: #d9dee7;
+      --chip: #eef3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #222;
-      background: #ffffff;
-    }
-
-    h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.2rem;
-    }
-
-    h2 {
-      margin-top: 2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.3rem;
-      color: #111;
+      color: var(--text);
+      background: var(--bg);
     }
 
     a {
-      color: #0057b8;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -36,170 +37,499 @@
       text-decoration: underline;
     }
 
-    .subtitle {
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1f3b73 55%, #2563eb 100%);
+      color: white;
+      padding: 70px 20px 60px;
+    }
+
+    .hero-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .name {
+      font-size: 2.8rem;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      margin: 0 0 8px;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+      max-width: 850px;
+      margin: 0 0 18px;
+      color: #e5edff;
+    }
+
+    .hero-description {
+      max-width: 850px;
+      font-size: 1.02rem;
+      color: #dbe7ff;
+      margin-bottom: 24px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-links a {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.55);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-links a:hover {
+      background: rgba(255,255,255,0.18);
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
       font-size: 1.05rem;
-      color: #555;
-      margin-bottom: 1rem;
     }
 
-    .links {
-      margin: 1rem 0 2rem 0;
+    .card p {
+      margin-bottom: 0;
     }
 
-    .links a {
-      margin-right: 14px;
-      font-weight: bold;
+    .muted {
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--chip);
+      color: #1d4ed8;
+      border: 1px solid #d9e5ff;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
     }
 
     .project {
-      margin-bottom: 1.2rem;
+      margin-bottom: 16px;
     }
 
     .project-title {
-      font-weight: bold;
+      font-weight: 750;
       font-size: 1.05rem;
+      margin-bottom: 5px;
     }
 
-    .small {
-      color: #666;
+    .highlight {
+      border-left: 4px solid var(--accent);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: -36px;
+      margin-bottom: 34px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .timeline-item {
+      padding-left: 18px;
+      border-left: 2px solid var(--line);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: -6px;
+      top: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      color: var(--muted);
       font-size: 0.95rem;
+    }
+
+    @media (max-width: 850px) {
+      .grid, .two-grid, .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      .name {
+        font-size: 2.2rem;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .stat-row {
+        margin-top: 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Nandan Sriranga</h1>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="name">Nandan Sriranga</h1>
 
-  <div class="subtitle">
-    PhD Candidate in Electrical Engineering, Syracuse University<br />
-    Statistical Signal Processing | Sequential Inference | Distributed Detection | Computational Research | Machine Learning
-  </div>
+      <p class="tagline">
+        PhD Candidate in Electrical Engineering working on statistical signal processing,
+        sequential inference, distributed sensing, and computational research.
+      </p>
 
-  <div class="links">
-    <a href="mailto:nand26srir@gmail.com">Email</a>
-    <a href="https://scholar.google.com/citations?user=dfCC90MAAAAJ" target="_blank">Google Scholar</a>
-    <a href="https://github.com/nandans16" target="_blank">GitHub</a>
-    <a href="Nandan_CV.pdf" target="_blank">CV</a>
-    <a href="https://www.linkedin.com/in/nandan-sriranga-299394218/" target="_blank">LinkedIn</a>
-  </div>
+      <p class="hero-description">
+        I build mathematical models and simulation pipelines for difficult inference problems:
+        detecting changes, comparing unknown distributions, fusing sensor data, evaluating
+        algorithms, and debugging unexpected behavior from first principles.
+      </p>
 
-  <h2>About</h2>
+      <div class="hero-links">
+        <a href="mailto:nand26srir@gmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=dfCC90MAAAAJ" target="_blank">Google Scholar</a>
+        <a href="https://github.com/nandans16" target="_blank">GitHub</a>
+        <a href="Nandan_CV.pdf" target="_blank">CV</a>
+        <a href="https://www.linkedin.com/in/nandan-sriranga-299394218/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </header>
 
-  <p>
-    I am a PhD candidate in Electrical Engineering at Syracuse University, advised by
-    Prof. Pramod K. Varshney, with expected completion in October 2026. My research
-    focuses on statistical signal processing, sequential inference, distributed detection,
-    adaptive sensing, sensor fusion, anomaly detection, and machine-learning-based
-    analysis of sensor data.
-  </p>
+  <main class="container">
 
-  <p>
-    I am interested in research engineering and applied scientist roles involving
-    mathematical modeling, computational experimentation, first-principles debugging,
-    ML system evaluation, document understanding, and turning algorithms into reliable
-    simulation or software pipelines.
-  </p>
+    <section class="stat-row">
+      <div class="stat">
+        <div class="stat-number">13</div>
+        <div class="stat-label">Accepted peer-reviewed papers</div>
+      </div>
 
-  <h2>Research Interests</h2>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Journal manuscripts under review or in preparation</div>
+      </div>
 
-  <p>
-    Statistical signal processing, sequential detection, universal hypothesis testing,
-    distributed sensing, wireless sensor networks, passive radar, adaptive sensor
-    collaboration, anomaly/change detection, probabilistic modeling, model evaluation,
-    distribution-shift detection, and computational research.
-  </p>
+      <div class="stat">
+        <div class="stat-number">PhD</div>
+        <div class="stat-label">Electrical Engineering, Syracuse University</div>
+      </div>
 
-  <h2>Selected Projects</h2>
+      <div class="stat">
+        <div class="stat-number">MATLAB</div>
+        <div class="stat-label">Monte Carlo simulation, parfor, algorithm evaluation</div>
+      </div>
+    </section>
 
-  <div class="project">
-    <div class="project-title">Sequential Universal Two-Sample Testing with Adaptive and Active Sensing</div>
-    <p>
-      Developed sequential universal tests for comparing two unknown data-generating
-      distributions without assuming parametric likelihood models. Designed adaptive
-      weighting and active stream-selection policies with theoretical error guarantees.
-      This work connects to online model evaluation, distribution-shift detection,
-      adaptive data collection, and monitoring ML systems under changing data distributions.
-    </p>
-  </div>
+    <section class="section">
+      <h2>About</h2>
+      <div class="card highlight">
+        <p>
+          I am a PhD candidate in Electrical Engineering at Syracuse University, advised by
+          Prof. Pramod K. Varshney, with expected completion in October 2026. My research
+          focuses on statistical signal processing, sequential inference, distributed detection,
+          adaptive sensing, sensor fusion, passive radar, anomaly detection, and machine-learning-based
+          analysis of sensor data.
+        </p>
 
-  <div class="project">
-    <div class="project-title">Online Sensor Collaboration for Moving Target Detection</div>
-    <p>
-      Developed adaptive sensor-collaboration algorithms for moving-target detection in
-      distributed sensor networks. Built MATLAB simulation pipelines for Monte Carlo
-      experiments, parameter sweeps, detection probability, false-alarm analysis, and
-      topology tradeoffs. Used MATLAB Parallel Computing Toolbox and parfor loops to
-      accelerate large-scale simulations.
-    </p>
-  </div>
+        <p>
+          I am especially interested in research engineering and applied scientist roles where
+          mathematical modeling, computational experimentation, first-principles debugging, and
+          reliable evaluation matter. I have also used Mathpix during my PhD workflow to convert
+          equations into LaTeX, so I have first-hand appreciation for mathematical OCR and
+          document-understanding problems.
+        </p>
+      </div>
+    </section>
 
-  <div class="project">
-    <div class="project-title">Quickest Detection of Link Outages in Wireless Sensor Networks</div>
-    <p>
-      Developed low-delay statistical detectors for identifying abrupt link failures and
-      sparse heterogeneous anomalies in wireless sensor networks. The work is relevant to
-      time-series anomaly detection, predictive maintenance, sensor-network monitoring,
-      and cyber-physical system health diagnostics.
-    </p>
-  </div>
+    <section class="section">
+      <h2>What I Work On</h2>
 
-  <div class="project">
-    <div class="project-title">Passive Radar Target Detection with Inter-Receiver Collaboration</div>
-    <p>
-      Developed distributed passive radar detection methods using whitening, subspace
-      transformations, cross-correlation, and receiver collaboration. Evaluated detection
-      performance under communication constraints and weak uplink conditions.
-    </p>
-  </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Sequential Inference</h3>
+          <p class="muted">
+            Sequential detection, universal hypothesis testing, stopping rules, adaptive sampling,
+            distribution-shift detection, and online model evaluation.
+          </p>
+        </div>
 
-  <div class="project">
-    <div class="project-title">AI Agent for Progressive Chess</div>
-    <p>
-      Built an AI agent for progressive chess using Monte Carlo Tree Search with UCT-based
-      exploration, a custom chess-position heuristic, and a convolutional neural network
-      for state-value priors. This project reflects my interest in building computational
-      systems from first principles and improving them through experimentation and debugging.
-    </p>
-    <p class="small">
-      GitHub: <a href="YOUR_CHESS_AI_GITHUB_LINK_HERE" target="_blank">Add project link here</a>
-    </p>
-  </div>
+        <div class="card">
+          <h3>Computational Research</h3>
+          <p class="muted">
+            MATLAB/Python simulation pipelines, Monte Carlo experiments, parameter sweeps,
+            ROC analysis, detection-delay studies, and parallel simulation workflows.
+          </p>
+        </div>
 
-  <h2>Publications and Research Service</h2>
+        <div class="card">
+          <h3>Sensor Fusion</h3>
+          <p class="muted">
+            Distributed detection, adaptive sensor collaboration, passive radar, wireless sensor
+            networks, communication-constrained inference, and heterogeneous information fusion.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <p>
-    I am an author of 13 accepted peer-reviewed papers in journals and conferences, with
-    3 additional journal manuscripts under review or in preparation. I have also served
-    as a reviewer for IEEE Transactions on Aerospace and Electronic Systems, IEEE
-    Transactions on Signal Processing, IEEE Communications Letters, IEEE Information
-    Theory Workshop, and EUSIPCO.
-  </p>
+    <section class="section">
+      <h2>Selected Projects</h2>
 
-  <p>
-    Full publication list: <a href="https://scholar.google.com/citations?user=dfCC90MAAAAJ" target="_blank">Google Scholar</a>
-  </p>
+      <div class="two-grid">
 
-  <h2>Education</h2>
+        <div class="card project">
+          <div class="project-title">Sequential Universal Two-Sample Testing</div>
+          <p>
+            Developed adaptive and active-sensing tests for comparing two unknown data-generating
+            distributions without assuming parametric likelihood models. This work connects to
+            online model evaluation, distribution-shift detection, and adaptive data collection.
+          </p>
+          <div class="chips">
+            <span class="chip">Universal testing</span>
+            <span class="chip">Adaptive sensing</span>
+            <span class="chip">Model evaluation</span>
+          </div>
+        </div>
 
-  <p>
-    <strong>PhD Candidate in Electrical Engineering</strong><br />
-    Syracuse University, 2019–Present<br />
-    Advisor: Prof. Pramod K. Varshney<br />
-    Expected graduation: October 2026
-  </p>
+        <div class="card project">
+          <div class="project-title">Online Sensor Collaboration for Moving Target Detection</div>
+          <p>
+            Developed adaptive collaboration algorithms for distributed moving-target detection.
+            Built MATLAB simulation pipelines for Monte Carlo experiments, detection probability,
+            false-alarm analysis, and topology tradeoffs.
+          </p>
+          <div class="chips">
+            <span class="chip">MATLAB</span>
+            <span class="chip">parfor</span>
+            <span class="chip">GLRT</span>
+          </div>
+        </div>
 
-  <p>
-    <strong>B.E. Electronics and Communications Engineering</strong><br />
-    PES University, Bangalore, India, 2014–2018
-  </p>
+        <div class="card project">
+          <div class="project-title">Quickest Detection of Link Outages</div>
+          <p>
+            Developed low-delay statistical detectors for identifying abrupt link failures and
+            sparse heterogeneous anomalies in wireless sensor networks. Relevant to time-series
+            anomaly detection and sensor-network monitoring.
+          </p>
+          <div class="chips">
+            <span class="chip">Change detection</span>
+            <span class="chip">Anomaly detection</span>
+            <span class="chip">Network monitoring</span>
+          </div>
+        </div>
 
-  <h2>Contact</h2>
+        <div class="card project">
+          <div class="project-title">Passive Radar Target Detection</div>
+          <p>
+            Developed distributed passive radar detection methods using whitening, subspace
+            transformations, cross-correlation, and receiver collaboration under communication
+            constraints.
+          </p>
+          <div class="chips">
+            <span class="chip">Passive radar</span>
+            <span class="chip">Subspace methods</span>
+            <span class="chip">Sensor fusion</span>
+          </div>
+        </div>
 
-  <p>
-    Email: <a href="mailto:nand26srir@gmail.com">nand26srir@gmail.com</a><br />
-    Location: Syracuse, NY
-  </p>
+        <div class="card project">
+          <div class="project-title">AI Agent for Progressive Chess</div>
+          <p>
+            Built an AI agent using Monte Carlo Tree Search with UCT exploration, a custom
+            progressive-chess heuristic, and a convolutional neural network for state-value priors.
+          </p>
+          <p>
+            <a href="https://github.com/nandans16" target="_blank">View GitHub profile</a>
+          </p>
+          <div class="chips">
+            <span class="chip">MCTS</span>
+            <span class="chip">CNN</span>
+            <span class="chip">Search</span>
+          </div>
+        </div>
+
+        <div class="card project">
+          <div class="project-title">Human-Assisted Decision-Making</div>
+          <p>
+            Studied binary hypothesis testing where machine observations are fused with human
+            side information. Used copula-based dependence models and likelihood-ratio fusion.
+          </p>
+          <div class="chips">
+            <span class="chip">Copula models</span>
+            <span class="chip">Decision fusion</span>
+            <span class="chip">Trustworthy AI</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Skills</h2>
+
+      <div class="card">
+        <div class="chips">
+          <span class="chip">MATLAB</span>
+          <span class="chip">Python</span>
+          <span class="chip">C++</span>
+          <span class="chip">MATLAB Parallel Computing Toolbox</span>
+          <span class="chip">parfor</span>
+          <span class="chip">Monte Carlo simulation</span>
+          <span class="chip">Algorithm debugging</span>
+          <span class="chip">Signal processing</span>
+          <span class="chip">Detection theory</span>
+          <span class="chip">Estimation theory</span>
+          <span class="chip">Sequential inference</span>
+          <span class="chip">Machine learning</span>
+          <span class="chip">CNNs</span>
+          <span class="chip">SVMs</span>
+          <span class="chip">PCA</span>
+          <span class="chip">Optimization</span>
+          <span class="chip">Probability</span>
+          <span class="chip">Information theory</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Research Service</h2>
+
+      <div class="card">
+        <p>
+          I have served as a peer reviewer for IEEE Transactions on Aerospace and Electronic Systems,
+          IEEE Transactions on Signal Processing, IEEE Communications Letters, IEEE Information Theory
+          Workshop, and EUSIPCO.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+
+      <div class="card">
+        <div class="timeline-item">
+          <strong>PhD Candidate in Electrical Engineering</strong><br />
+          Syracuse University, 2019–Present<br />
+          Advisor: Prof. Pramod K. Varshney<br />
+          Expected graduation: October 2026
+        </div>
+
+        <div class="timeline-item">
+          <strong>B.E. Electronics and Communications Engineering</strong><br />
+          PES University, Bangalore, India, 2014–2018
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Beyond Research</h2>
+
+      <div class="card">
+        <p>
+          Outside my formal research area, I am an avid reader of history and linguistics,
+          especially comparative linguistics. I am not formally trained in linguistics, but I
+          enjoy studying language families, sound change, historical language development, and
+          how structure and meaning evolve across languages. That interest reflects the same
+          habit that drives my technical work: trying to understand complex systems by looking
+          for patterns, structure, evidence, and underlying mechanisms.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Email: <a href="mailto:nand26srir@gmail.com">nand26srir@gmail.com</a> ·
+        Google Scholar:
+        <a href="https://scholar.google.com/citations?user=dfCC90MAAAAJ" target="_blank">
+          Nandan Sriranga
+        </a> ·
+        GitHub:
+        <a href="https://github.com/nandans16" target="_blank">
+          nandans16
+        </a> ·
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/nandan-sriranga-299394218/" target="_blank">
+          Profile
+        </a>
+      </p>
+    </footer>
+
+  </main>
 
 </body>
 </html>
